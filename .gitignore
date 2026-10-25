@@ -1,0 +1,14 @@
+# Large data files (regenerate with collector.py / preprocessor.py / topic_model.py)
+data/
+
+# Large gensim corpus artifacts (regenerate with preprocessor.py)
+models/corpus.mm
+models/corpus.mm.index
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.ipynb_checkpoints/
