@@ -2,7 +2,7 @@
 
 **MSc Project — University of Lagos (Unilag)**  
 **Author:** Oluwasegun Adeniyi  
-**Supervisor:** Dr. N.A. Azeez  
+**Supervisor:** Prof. N.A. Azeez  
 **Department:** Cybersecurity and Software Engineering
 
 ---
