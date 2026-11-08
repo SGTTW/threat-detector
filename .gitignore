@@ -12,3 +12,13 @@ __pycache__/
 venv/
 .env
 .ipynb_checkpoints/
+
+
+
+
+# Ignore model artifacts and figures
+models/
+figures/
+*.pyc
+*.pkl
+*.joblib

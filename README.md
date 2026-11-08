@@ -9,7 +9,7 @@
 
 ## Overview
 
-This project builds an early warning system that automatically detects and classifies emerging cyber threats by mining cybersecurity discussions from Stack Overflow. It uses Latent Dirichlet Allocation (LDA) for unsupervised threat topic discovery and XGBoost for classification, achieving **75.65% accuracy** across 10 threat categories on 92,771 real posts.
+This project builds an early warning system that automatically detects and classifies emerging cyber threats by mining cybersecurity discussions from Stack Overflow. It uses Latent Dirichlet Allocation (LDA) for unsupervised threat topic discovery and Support Vector Machine (SVM) for classification, achieving **83.48% accuracy** across 10 threat categories on 92,771 real posts.
 
 ---
 
@@ -20,20 +20,29 @@ This project builds an early warning system that automatically detects and class
 | `collector.py`    | Pulls cybersecurity posts from Stack Overflow API (2015–2026)         |
 | `preprocessor.py` | Cleans text: strips HTML, tokenises, lemmatises, builds Gensim corpus |
 | `topic_model.py`  | Runs LDA topic modelling, selects optimal K via coherence sweep       |
-| `classifier.py`   | Trains Random Forest + XGBoost, generates evaluation figures          |
+| `classifier.py`   | Trains 10 classifiers, evaluates across 10 metrics, generates figures |
 
 ---
 
 ## Results
 
-| Model         | Accuracy   | Precision (macro) | Recall (macro) | F1 (macro) | Weighted F1 |
-| ------------- | ---------- | ----------------- | -------------- | ---------- | ----------- |
-| Random Forest | 57.88%     | 53.82%            | 65.64%         | 55.03%     | 56.02%      |
-| **XGBoost**   | **75.65%** | **74.85%**        | **69.13%**     | **71.28%** | **75.32%**  |
+| Model               | Accuracy   | Precision (macro) | Recall (macro) | F1 (macro) | Weighted F1 |
+| ------------------- | ---------- | ----------------- | -------------- | ---------- | ----------- |
+| Logistic Regression | 82.88%     | 76.87%            | 84.61%         | 79.83%     | 83.08%      |
+| Multinomial NB      | 76.11%     | 80.11%            | 63.81%         | 66.29%     | 74.82%      |
+| **SVM**             | **83.48%** | **83.11%**        | **77.75%**     | **79.94%** | **83.30%**  |
+| KNN                 | 61.83%     | 57.07%            | 63.10%         | 59.23%     | 61.74%      |
+| Decision Tree       | 47.15%     | 43.40%            | 48.31%         | 44.52%     | 47.30%      |
+| Random Forest       | 57.88%     | 53.82%            | 65.64%         | 55.03%     | 56.02%      |
+| Extra Trees         | 57.95%     | 54.36%            | 67.59%         | 55.27%     | 56.10%      |
+| Gradient Boosting   | 67.07%     | 67.32%            | 59.29%         | 61.98%     | 66.42%      |
+| XGBoost             | 70.42%     | 70.84%            | 63.59%         | 66.10%     | 69.89%      |
+| LightGBM            | 79.77%     | 76.52%            | 77.00%         | 76.60%     | 79.74%      |
 
+- **Best model:** SVM (F1 = 0.7994, Accuracy = 83.48%)
 - **Dataset:** 92,771 unique Stack Overflow posts (10 security tags)
 - **Topics discovered:** 10 (K selected by C_v coherence = 0.5348)
-- **Date range:** January 2015 – October 2026
+- **Date range:** January 2015 – June 2026
 
 ---
 
